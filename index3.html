@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÔN TẬP TIẾNG ANH CHO TUỆ NGÂN</title>
+    <!-- Thư viện giọng đọc tự nhiên -->
+    <script src="https://responsivevoice.org"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff0f5;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 { color: #d81b60; margin-bottom: 5px; font-size: 28px; text-transform: uppercase; }
+        h2 { color: #666; font-size: 15px; margin-top: 0; font-weight: normal; margin-bottom: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        
+        /* Bảng điều khiển */
+        .control-panel {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .control-panel label { font-weight: bold; color: #444; font-size: 14px; }
+        .control-panel select { padding: 8px; border-radius: 8px; border: 1px solid #ccc; font-size: 14px; }
+
+        /* Tiêu đề tuần */
+        .week-title {
+            font-weight: bold;
+            font-size: 20px;
+            color: #d81b60;
+            text-align: left;
+            margin: 25px 0 10px 0;
+            padding-bottom: 5px;
+            border-bottom: 2px dashed #ffb3d1;
+        }
+        
+        /* Lưới hiển thị các nút vuông */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* NÚT BẤM HÌNH VUÔNG TO */
+        .card-btn {
+            background: white;
+            border: 2px solid #ffccd8;
+            border-radius: 15px;
+            padding: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .card-btn:hover {
+            border-color: #d81b60;
+            transform: scale(1.03);
+            background: #fff9fa;
+        }
+        .card-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Định dạng ảnh - Giữ nguyên pointer-events: none để chống kẹt click */
+        .card-btn img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            pointer-events: none; 
+        }
+
+        /* Chữ tiếng Anh hiện ra sau khi click */
+        .phrase-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: #d81b60;
+            text-align: center;
+            word-wrap: break-word;
+            margin-top: 5px;
+            opacity: 0; /* Mặc định ẩn */
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        /* Hiện chữ khi có class show */
+        .phrase-text.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ÔN TẬP TIẾNG ANH CHO TUỆ NGÂN 💕</h1>
+    <h2>Giáo trình GOOD HABITS - Khối Lá</h2>
+
+    <!-- BẢNG ĐIỀU CHỈNH GIỌNG ĐỌC -->
+    <div class="control-panel">
+        <div>
+            <label for="voiceSelect">Kiểu giọng: </label>
+            <select id="voiceSelect">
+                <option value="US English Female" selected>Giọng Nữ Mỹ (Hay nhất ✨)</option>
+                <option value="US English Male">Giọng Nam Mỹ 👨</option>
+                <option value="UK English Female">Giọng Nữ Anh-Anh 👩</option>
+            </select>
+        </div>
+        <div>
+            <label for="speedSelect">Tốc độ: </label>
+            <select id="speedSelect">
+                <option value="1">Bình thường</option>
+                <option value="0.75" selected>Chậm (Cho bé dễ nghe)</option>
+                <option value="0.6">Rất chậm</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- TUẦN 1 -->
+    <div class="week-title">Week 1</div>
+    <div class="grid-container">
+        <button class="card-btn" onclick="handleClick(this, 'Wash my hands every day')">
+            <img src="img/p1.png" alt="Wash hands">
+            <div class="phrase-text">Wash my hands every day</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Drink water every day')">
+            <img src="img/p2.png" alt="Drink water">
+            <div class="phrase-text">Drink water every day</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Exercise every day')">
+            <img src="img/p3.png" alt="Exercise">
+            <div class="phrase-text">Exercise every day</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Read books every day')">
+            <img src="img/p4.png" alt="Read books">
+            <div class="phrase-text">Read books every day</div>
+        </button>
+    </div>
+
+    <!-- TUẦN 2 -->
+    <div class="week-title">Week 2</div>
+    <div class="grid-container">
+        <button class="card-btn" onclick="handleClick(this, 'Eat healthy food every day')">
+            <img src="img/p5.png" alt="Eat healthy">
+            <div class="phrase-text">Eat healthy food every day</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Keep the room clean every day')">
+            <img src="img/p6.png" alt="Clean room">
+            <div class="phrase-text">Keep the room clean every day</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Protect animals')">
+            <img src="img/p7.png" alt="Protect animals">
+            <div class="phrase-text">Protect animals</div>
+        </button>
+    </div>
+
+    <!-- TUẦN 3 -->
+    <div class="week-title">Week 3</div>
+    <div class="grid-container">
+        <button class="card-btn" onclick="handleClick(this, 'Pick up trash every day')">
+            <img src="img/p8.png" alt="Pick trash">
+            <div class="phrase-text">Pick up trash every day</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Smile every day')">
+            <img src="img/p9.png" alt="Smile">
+            <div class="phrase-text">Smile every day</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Plant a tree')">
+            <img src="img/p10.png" alt="Plant tree">
+            <div class="phrase-text">Plant a tree</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Help my mom every day')">
+            <img src="img/p11.png" alt="Help mom">
+            <div class="phrase-text">Help my mom every day</div>
+        </button>
+    </div>
+
+    <!-- TUẦN 4 -->
+    <div class="week-title">Week 4</div>
+    <div class="grid-container">
+        <button class="card-btn" onclick="handleClick(this, 'Sleep early every day')">
+            <img src="img/p12.png" alt="Sleep early">
+            <div class="phrase-text">Sleep early every day</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Bathe every day')">
+            <img src="img/p13.png" alt="Bathe">
+            <div class="phrase-text">Bathe every day</div>
+        </button>
+        <button class="card-btn" onclick="handleClick(this, 'Save water every day')">
+            <img src="img/p14.png" alt="Save water">
+            <div class="phrase-text">Save water every day</div>
+        </button>
+    </div>
+</div>
+
+<script>
+    function handleClick(buttonElement, text) {
+        // Hiện chữ tiếng Anh tương ứng
+        var textElement = buttonElement.querySelector('.phrase-text');
+        if (textElement) {
+            textElement.classList.add('show');
+        }
+
+        // Phát âm câu tiếng Anh
+        var selectedVoice = document.getElementById("voiceSelect").value;
+        var selectedSpeed = parseFloat(document.getElementById("speedSelect").value);
+
+        if (typeof responsiveVoice !== 'undefined') {
+            responsiveVoice.cancel(); 
+            responsiveVoice.speak(text, selectedVoice, { rate: selectedSpeed });
+        } else {
+            window.speechSynthesis.cancel();
+            var utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = selectedSpeed;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+</script>
+
+</body>
+</html>
